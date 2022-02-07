@@ -78,6 +78,7 @@ class Candidacy(db.Model):
     date = db.Column(db.String(), default=datetime.date.today())
     status = db.Column(db.String(), nullable=True)
     origin = db.Column(db.String(), nullable=True)
+    description = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return f' Candidat id : {self.user_id}'
@@ -93,7 +94,8 @@ class Candidacy(db.Model):
             'contact_mobilephone': self.contact_mobilephone,
             'date': self.date,
             'status': self.status,
-            'origin': self.origin
+            'origin': self.origin,
+            'description': self.description
             }
 
 
@@ -107,7 +109,7 @@ class Candidacy(db.Model):
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
-        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.company, cls.job_type, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status, cls.origin).all():
+        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.company, cls.job_type, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status, cls.origin, cls.description).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
