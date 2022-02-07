@@ -134,3 +134,9 @@ def delete_candidacy():
     Candidacy.query.filter_by(id=candidacy_id).first().delete_from_db()
     flash("Candidature supprimé avec succés",category="success")
     return redirect(url_for('board_page'))
+
+@app.route('/board/details')
+def show_candidacy_details():
+    candidacy_id = request.args.get('id')
+    candidacy = Candidacy.query.filter_by(id=candidacy_id).first()
+    return render_template('candidacy_details.html', candidacy=candidacy.json())
