@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 .db
 __pycache__
 destest.py
 App/__pycache__
+=======
+app.db
+__pycache__
+./App/__pycache__
+>>>>>>> 7e6c9106f29270506c935760d89f3703bb20c879

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Détails de candidature
+{% endblock %}
+
+{% block content %}
+<h1>Détails de candidature</h1>
+
+<main>
+
+    <section class="detail1">
+        <h2>Entreprise</h2>
+        <p>{{ candidacy['company'] }}</p>
+    </section>
+
+    <section class="detail2">
+        <h2>Type de poste</h2>
+        <p>{{ candidacy['job_type'] }}</p>
+    </section>
+
+    <section class="detail3">
+        <h2>Statut de la candidature</h2>
+        <p>{{ candidacy['status'] }}</p>
+    </section>
+
+    <section class="detail4">
+        <h2>Coordonnées Entreprise</h2>
+        <p>{{ candidacy['contact_email'] }}</p>
+        <p>{{ candidacy['contact_mobilephone'] }}</p>
+    </section>
+
+    <section class="detail5">
+        <h2>Description du poste</h2>
+        <p>{{ candidacy['job_description'] }}</p>
+    </section>
+
+    <section class="detail6">
+        <h2>Nom Contact</h2>
+        <p>{{ candidacy['contact_full_name'] }}</p>
+    </section>
+
+    <section class="detail7">
+        <h2>Origine de l'offre</h2>
+        <p>{{ candidacy['origin'] }}</p>
+    </section>
+
+    <section class="detail8">
+        <h2>Commentaires</h2>
+        <p>{{ candidacy['comment'] }}</p>
+    </section>
+
+</main>
+
+{% endblock %}

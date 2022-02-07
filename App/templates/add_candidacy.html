@@ -8,8 +8,12 @@
     <form method="POST" class="form-register">
         {{ form.hidden_tag() }}
 
-        {{ form.entreprise.label }}
-        {{ form.entreprise(size=32, class="form-control") }}
+        {{ form.company.label }}
+        {{ form.company(size=32, class="form-control") }}
+        <br>
+
+        {{ form.job_type.label }}
+        {{ form.job_type(size=32, class="form-control") }}
         <br>
 
         {{ form.contact_full_name.label }}
@@ -22,6 +26,10 @@
 
         {{ form.contact_mobilephone.label }}
         {{ form.contact_mobilephone(size=32, class="form-control") }}
+        <br>  
+
+        {{ form.status.label }}
+        {{ form.status(size=3, class="form-control") }}
         <br>  
 
 
