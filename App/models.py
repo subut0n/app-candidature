@@ -8,10 +8,8 @@ import csv
 @login_manager.user_loader
 def load_user(user_id):
     """Allow to create a current_user with his id
-
     Args:
         user_id (int): user_id from the database
-
     Returns:
         instance of users depending of his id
     """
@@ -19,11 +17,9 @@ def load_user(user_id):
 
 class Users(db.Model,UserMixin):
     """Create a table Users on the candidature database
-
     Args:
         db.Model: Generates columns for the table
         UserMixin: Generates an easy way to provide a current_user
-
     """
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
     last_name = db.Column(db.String(length=30), nullable=False)
@@ -62,10 +58,8 @@ class Users(db.Model,UserMixin):
 
 class Candidacy(db.Model):
     """Create a table Candidacy on the candidature database
-
     Args:
         db.Model: Generates columns for the table
-
     """
 
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
@@ -102,8 +96,8 @@ class Candidacy(db.Model):
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).all():
-            candidacy_list.append(candidacy.json())
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.company, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+            candidacy_list.append(candidacy)
         return candidacy_list
 
     @classmethod

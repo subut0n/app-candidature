@@ -45,8 +45,8 @@ def board_page():
     Returns:
         [str]: [board page code different if the user is admin or not]
     """
-    admin_candidacy_attributs = ["user_fisrt_name",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
-    usercandidacy_attributs = ['entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    admin_candidacy_attributs = ["user_fisrt_name",'company','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    usercandidacy_attributs = ['company','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
 
 
     if (current_user.is_admin == True):  
@@ -72,7 +72,7 @@ def add_candidature():
     """
     form = AddCandidacy()
     if form.validate_on_submit() and len(str(form.contact_mobilephone.data)) > 9:
-        Candidacy(user_id = current_user.id, entreprise = form.entreprise.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data).save_to_db()
+        Candidacy(user_id = current_user.id, company = form.company.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data, status = form.status.data).save_to_db()
         flash('Nouvelle Candidature ajouté ', category='success')
         return redirect(url_for('board_page'))
     print(form.contact_mobilephone.data)
@@ -134,6 +134,49 @@ def delete_candidacy():
     Candidacy.query.filter_by(id=candidacy_id).first().delete_from_db()
     flash("Candidature supprimé avec succés",category="success")
     return redirect(url_for('board_page'))
+
+
+@app.route('/view_apprenant', methods=["GET","POST"])
+@login_required
+def get_view_apprenant():
+    """ Admin can display the profil of a student
+    """
+    apprenant = request.args.get('apprenant')
+    admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    apprenant_id = Users.query.filter_by(last_name=apprenant).first().id
+    if current_user.is_admin == True:
+        return render_template('board.html', lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=Candidacy.find_by_user_id(apprenant_id))
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))
+
+@app.route('/list_apprenant')
+@login_required
+def get_list_apprenant():
+    """ Admin can display th list of all student
+    """
+    if current_user.is_admin == True:
+        title = ["first_name", "last_name","email_address"]
+        return render_template("list_apprenant.html",title = title, list_apprenant = Users.query.filter_by(is_admin=False) )
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))
+
+@app.route('/status_en_cours')
+@login_required
+def get_status_en_cours():
+    """ liste des apprenant en recherche d'une alternance
+    
+    choix = "En cours"
+    admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    if current_user.is_admin == True:
+        apprenant_id = []
+        for name in Users.query.all():
+            if choix not in Candidacy.find_by_user_id(name.id):
+                apprenant_id.append(name.id)
+        return render_template("board.html",title = admin_candidacy_attributs, user_candidacy=Users.query.filter_by())
+    """
+    pass
 
 @app.route('/board/details')
 def show_candidacy_details():
