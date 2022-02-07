@@ -78,6 +78,7 @@ class Candidacy(db.Model):
     date = db.Column(db.String(), default=datetime.date.today())
     status = db.Column(db.String(), nullable=True)
     origin = db.Column(db.String(), nullable=True)
+    description = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return f' Candidat id : {self.user_id}'
@@ -94,7 +95,7 @@ class Candidacy(db.Model):
             'date': self.date,
             'status': self.status,
             'origin': self.origin,
-            'description':self.description
+            'description': self.description
             }
 
 
