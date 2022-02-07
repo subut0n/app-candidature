@@ -73,7 +73,7 @@ class Candidacy(db.Model):
     contact_email = db.Column(db.String(length=50), nullable=True)
     contact_mobilephone = db.Column(db.String(length=50), nullable=True)
     date = db.Column(db.String(), default=datetime.date.today())
-    status = db.Column(db.String(), nullable=True, default="En cours")
+    status = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return f' Candidat id : {self.user_id}'
@@ -94,8 +94,8 @@ class Candidacy(db.Model):
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).all():
-            candidacy_list.append(candidacy.json())
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.entreprise, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+            candidacy_list.append(candidacy)
         return candidacy_list
 
     @classmethod

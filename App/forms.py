@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField,EmailField,SubmitField,StringField
+from wtforms import PasswordField,EmailField,SubmitField,StringField, SelectField
 from wtforms.validators import Length,DataRequired,Email,EqualTo,ValidationError
 from .models import Users
 
@@ -15,9 +15,10 @@ class AddCandidacy(FlaskForm):
     """[Form to add candidacy]
     """
     entreprise = StringField(label='Entreprise', validators=[DataRequired()])
-    contact_full_name = StringField(label='contact_full_name', validators=[DataRequired()])
-    contact_email = StringField(label='contact_email', validators=[DataRequired()])
-    contact_mobilephone = StringField(label='contact_mobilephone')
+    contact_full_name = StringField(label='Nom et prénom de votre contact', validators=[DataRequired()])
+    contact_email = StringField(label='Email de votre contact', validators=[DataRequired()])
+    contact_mobilephone = StringField(label='Téléphone de votre contact')
+    status = SelectField('Status', choices=[('EC', 'En Cours'), ('AN', 'Annulé'), ('RE', 'Refusé')])
     submit = SubmitField(label='Ajouter')
 
 class ModifyProfile(FlaskForm):
