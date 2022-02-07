@@ -21,7 +21,7 @@ class AddCandidacy(FlaskForm):
     job_type = StringField(label='Type de poste', validators=[DataRequired()]) #add_candidacy.html a modifier
     contact_full_name = StringField(label='Nom et prénom de votre contact', validators=[DataRequired()])
     contact_email = EmailField(label='Email du contact', validators=[DataRequired()])
-    contact_mobilephone = StringField(IntergerField(label='Mobile du contact'))
+    contact_mobilephone = StringField(IntegerField(label='Mobile du contact'))
     status = SelectField('Status', choices=[('En cours', 'En Cours'), ('Annulé', 'Annulé'), ('Refusé', 'Refusé')])
     submit = SubmitField(label='Ajouter une candidature')
 
