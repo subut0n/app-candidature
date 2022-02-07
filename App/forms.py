@@ -14,11 +14,12 @@ class Login(FlaskForm):
 class AddCandidacy(FlaskForm):
     """[Form to add candidacy]
     """
-    entreprise = StringField(label='Entreprise', validators=[DataRequired()])
+    company = StringField(label='Entreprise', validators=[DataRequired()])
+    job_type = StringField(label='Type de poste', validators=[DataRequired()]) #add_candidacy.html a modifier
     contact_full_name = StringField(label='Nom et prénom de votre contact', validators=[DataRequired()])
-    contact_email = StringField(label='Email de votre contact', validators=[DataRequired()])
-    contact_mobilephone = StringField(label='Téléphone de votre contact')
-    status = SelectField('Status', choices=[('EC', 'En Cours'), ('AN', 'Annulé'), ('RE', 'Refusé')])
+    contact_email = StringField(label='contact_email', validators=[DataRequired()])
+    contact_mobilephone = StringField(label='contact_mobilephone')
+    status = SelectField('Status', choices=[('En cours', 'En Cours'), ('Annulé', 'Annulé'), ('Refusé', 'Refusé')])
     submit = SubmitField(label='Ajouter')
 
 class ModifyProfile(FlaskForm):

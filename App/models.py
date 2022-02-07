@@ -28,6 +28,7 @@ class Users(db.Model,UserMixin):
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
     last_name = db.Column(db.String(length=30), nullable=False)
     first_name = db.Column(db.String(length=30), nullable=False)
+    address = db.Column(db.String(length=30), nullable=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=200), nullable=False)
     telephone_number = db.Column(db.String(length=10), nullable=True)
@@ -40,6 +41,7 @@ class Users(db.Model,UserMixin):
         return {
             'last_name': self.last_name, 
             'first_name': self.first_name,
+            'address': self.address,
             'email_address': self.email_address,
             'telephone_number': self.telephone_number,
             'is_admin': self.is_admin
@@ -68,12 +70,14 @@ class Candidacy(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'),nullable=False)
-    entreprise = db.Column(db.String(), nullable=False)
+    company = db.Column(db.String(), nullable=False)
+    job_type = db.Column(db.String(), nullable=True)
     contact_full_name = db.Column(db.String(length=50), nullable=False)
     contact_email = db.Column(db.String(length=50), nullable=True)
     contact_mobilephone = db.Column(db.String(length=50), nullable=True)
     date = db.Column(db.String(), default=datetime.date.today())
     status = db.Column(db.String(), nullable=True)
+    origin = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return f' Candidat id : {self.user_id}'
@@ -82,26 +86,29 @@ class Candidacy(db.Model):
         return {
             'id': self.id, 
             'user_id': self.user_id, 
-            'entreprise': self.entreprise,
+            'company': self.company,
+            'job_type': self.job_type,
             'contact_full_name': self.contact_full_name,
             'contact_email': self.contact_email,
             'contact_mobilephone': self.contact_mobilephone,
             'date': self.date,
-            'status': self.status
+            'status': self.status,
+            'origin': self.origin,
+            'description':self.description
             }
 
 
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.entreprise, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.company, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
-        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.entreprise, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.company, cls.job_type, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status, cls.origin, cls.description).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
@@ -120,8 +127,8 @@ def init_db():
     #db.session.add( )
     Users(last_name="ben", first_name= "charles", email_address= "cb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=True).save_to_db() 
     Users(last_name="beniac", first_name= "cha", email_address= "bb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=False).save_to_db()
-    Candidacy(user_id = 1, entreprise = "facebook", contact_full_name = "mz", contact_email="mz@facebook.fb").save_to_db()
-    Candidacy(user_id = 1, entreprise = "google", contact_full_name = "lp", contact_email="lp@gmail.com").save_to_db()
+    Candidacy(user_id = 1, company = "facebook", contact_full_name = "mz", contact_email="mz@facebook.fb").save_to_db()
+    Candidacy(user_id = 1, company = "google", contact_full_name = "lp", contact_email="lp@gmail.com").save_to_db()
 
     
     # Insert all users from  "static/liste_apprenants.csv"
