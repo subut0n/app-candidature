@@ -1,3 +1,4 @@
+from operator import methodcaller
 from flask import render_template, redirect, url_for, flash, request
 from App import db, app
 from datetime import date
@@ -166,19 +167,83 @@ def get_list_apprenant():
 @login_required
 def get_status_en_cours():
     """ liste des apprenant en recherche d'une alternance
-    
-    choix = "En cours"
-    admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
-    if current_user.is_admin == True:
-        apprenant_id = []
-        for name in Users.query.all():
-            if choix not in Candidacy.find_by_user_id(name.id):
-                apprenant_id.append(name.id)
-        return render_template("board.html",title = admin_candidacy_attributs, user_candidacy=Users.query.filter_by())
     """
-    pass
+    if current_user.is_admin == True:
+        choix = "En cours"
+        requette = Candidacy.query.filter(Candidacy.status == choix).all()
+        list_app_id = list(set([requette[i].user_id for i in range(0,len(requette))]))
+        list_app = Users.query.filter(Users.id.in_(list_app_id))
+        admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+        list_app2 = [app.json() for app in list_app]
 
-@app.route('/board/details')
+        return render_template("board.html", lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=list_app2)
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))
+     
+
+@app.route('/board_admin', methods=['GET','POST'])
+@login_required
+def board_page_admin():
+    """[Allow to generate the template of board.html on board path, if user is authenticated else return on login]
+
+    Returns:
+        [str]: [board page code different if the user is admin or not]
+    """
+
+    admin_candidacy_attributs = ["first_name",'company' ,'date','status']
+    
+    if (current_user.is_admin == True):  
+        return render_template('board_admin.html', lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=Candidacy.get_all_in_list_with_user_name())
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))  
+
+@app.route('/redirect_to')
+@login_required
+def redirect_to():
+    page = request.args.get('page')
+    if current_user.is_admin == True:
+        if page == "status":
+            
+            return redirect(url_for('get_status_en_cours'))
+        elif page == "first_name":
+            return redirect(url_for("get_list_apprenant")) 
+        elif page == "company":
+            return redirect(url_for("get_company"))
+        else:
+            return render_template('home.html') 
+
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))  
+
+@app.route('/company')
+@login_required
+def get_company():
+    if current_user.is_admin == True:
+        test = Candidacy.query.group_by("company").all()
+        comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
+        title = ["company"]
+        return render_template("list_apprenant.html",lenght = len(title), title = title, list_apprenant=comp)
+
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))  
+
+@app.route('/candidacy_date')
+@login_required
+def get_candidacy_date():
+    if current_user.is_admin == True:
+        #user_candidacy=Candidacy.get_all_in_list_with_user_name()
+        #u = user_candidacy.querry.oder_by("date")
+        return redirect(url_for('home_page')) 
+        
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))         
+
+@app.route('/board/details', methods=["GET","POST"])
 def show_candidacy_details():
     candidacy_id = request.args.get('id')
     candidacy = Candidacy.query.filter_by(id=candidacy_id).first()
