@@ -73,6 +73,7 @@ class Candidacy(db.Model):
     status = db.Column(db.String(), nullable=True)
     origin = db.Column(db.String(), nullable=True)
     description = db.Column(db.String(), nullable=True)
+    comment = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return f' Candidat id : {self.user_id}'
@@ -89,14 +90,15 @@ class Candidacy(db.Model):
             'date': self.date,
             'status': self.status,
             'origin': self.origin,
-            'description': self.description
+            'description': self.description,
+            'comment' : self.comment
             }
 
 
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.company, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.id, cls.company, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
