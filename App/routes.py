@@ -6,7 +6,10 @@ from .forms import Login, AddCandidacy, ModifyCandidacy, ModifyProfile
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.utils import isAsciiNumber
-
+import pandas as pd 
+import json 
+import plotly
+import plotly.express as px
 
 @app.route('/')
 @app.route('/home')
