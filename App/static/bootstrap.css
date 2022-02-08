@@ -151,13 +151,13 @@ sup {
   top: -0.5em;
 }
 a {
-  color: #007bff;
+  color: #fff;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  color: #CE0033;
+  text-decoration: none;
 }
 a:not([href]) {
   color: inherit;
@@ -2440,13 +2440,12 @@ fieldset:disabled a.btn {
 }
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #CE0033;
+  border-color: #CE0033;
 }
 .btn-primary:hover {
-  color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  color: #CE0033;
+  background-color: #fff;
 }
 .btn-primary.focus,
 .btn-primary:focus {

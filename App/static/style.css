@@ -1,6 +1,6 @@
 h1{
     font-size: 30px;
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-weight: 300;
     text-align: center;
@@ -28,7 +28,7 @@ h1{
     height:300px;
     overflow-x:auto;
     margin-top: 0px;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid #CE0033;
   }
   th{
     padding: 20px 15px;
@@ -75,9 +75,7 @@ h1{
   
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
   body{
-    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4);
-    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
   }
   label{
     color:#fff;
