@@ -98,14 +98,14 @@ class Candidacy(db.Model):
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.id, cls.company, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.id, cls.company, cls.job_type, cls.date,cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
-        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.company, cls.job_type, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status, cls.origin, cls.description).all():
+        for candidacy in cls.query.join(Users).with_entities(Users.first_name, cls.company, cls.job_type, cls.description, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status, cls.origin, cls.comment).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
