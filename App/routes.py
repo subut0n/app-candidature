@@ -198,3 +198,12 @@ def show_candidacy_details():
     candidacy_id = request.args.get('id')
     candidacy = Candidacy.query.filter_by(id=candidacy_id).first()
     return render_template('candidacy_details.html', candidacy=candidacy.json())
+
+@app.route('/statistiques', methods=['GET', 'POST'])
+@login_required
+def show_stats():
+    df = px.data.medals_wide()
+    fig1 = px.bar(df,x='nation', y = ['gold', 'silver', 'bronze'], title ="Wide=Form Input" )
+    fig1json = json.dumps(fig1, cls = plotly.utils.PlotlyJSONEncoder)
+    
+    return render_template("statistiques.html", title = "Stats", fig1json = fig1json)
