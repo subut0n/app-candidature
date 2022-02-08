@@ -1,3 +1,4 @@
+import imp
 from flask import render_template, redirect, url_for, flash, request
 from App import db, app
 from datetime import date
@@ -198,6 +199,7 @@ def get_status_en_cours():
     pass
 
 @app.route('/board/details')
+@login_required
 def show_candidacy_details():
     candidacy_id = request.args.get('id')
     candidacy = Candidacy.query.filter_by(id=candidacy_id).first()
