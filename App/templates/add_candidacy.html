@@ -16,6 +16,10 @@
         {{ form.job_type(size=32, class="form-control") }}
         <br>
 
+        {{ form.description.label }}
+        {{ form.description(size=32, class="form-control") }}
+        <br>
+
         {{ form.contact_full_name.label }}
         {{ form.contact_full_name(size=32, class="form-control") }}
         <br>
@@ -28,8 +32,17 @@
         {{ form.contact_mobilephone(size=32, class="form-control") }}
         <br>  
 
+
+        {{ form.comment.label }}
+        {{ form.comment(size=32, class="form-control") }}
+        <br>
+
         {{ form.status.label }}
         {{ form.status(size=3, class="form-control") }}
+        <br>
+
+        {{ form.origin.label }}
+        {{ form.origin(size=32, class="form-control") }}
         <br>  
 
 
