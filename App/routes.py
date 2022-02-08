@@ -46,7 +46,7 @@ def board_page():
         [str]: [board page code different if the user is admin or not]
     """
     admin_candidacy_attributs = ["user_fisrt_name",'company','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
-    usercandidacy_attributs = ['company','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    usercandidacy_attributs = ['company','date','status']
 
 
     if (current_user.is_admin == True):  
@@ -72,7 +72,7 @@ def add_candidature():
     """
     form = AddCandidacy()
     if form.validate_on_submit() and len(str(form.contact_mobilephone.data)) > 9:
-        Candidacy(user_id = current_user.id, company = form.company.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data, status = form.status.data).save_to_db()
+        Candidacy(user_id = current_user.id, company = form.company.data, job_type = form.job_type.data, description = form.description.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data, status = form.status.data, comment = form.comment.data).save_to_db()
         flash('Nouvelle Candidature ajouté ', category='success')
         return redirect(url_for('board_page'))
     print(form.contact_mobilephone.data)
