@@ -45,8 +45,8 @@ def board_page():
     Returns:
         [str]: [board page code different if the user is admin or not]
     """
-    admin_candidacy_attributs = ["user_fisrt_name",'company','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
-    usercandidacy_attributs = ['company','date','status']
+    admin_candidacy_attributs = ["user_fisrt_name",'company','job_type','date','status']
+    usercandidacy_attributs = ['company','job_type','date','status']
 
 
     if (current_user.is_admin == True):  
@@ -71,11 +71,21 @@ def add_candidature():
         [str]: [Candidacy code page]
     """
     form = AddCandidacy()
-    if form.validate_on_submit() and len(str(form.contact_mobilephone.data)) > 9:
+
+    def conditions_ok(form):
+
+        if len(form.contact_mobilephone.data) <= 9:
+            return False 
+        elif isAsciiNumber(form.contact_mobilephone) == False:
+            return False
+        else:
+            return True
+
+
+    if form.validate_on_submit() and conditions_ok(form):
         Candidacy(user_id = current_user.id, company = form.company.data, job_type = form.job_type.data, description = form.description.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data, status = form.status.data, comment = form.comment.data).save_to_db()
-        flash('Nouvelle Candidature ajouté ', category='success')
+        flash('Nouvelle candidature ajouté ', category='success')
         return redirect(url_for('board_page'))
-    print(form.contact_mobilephone.data)
     return render_template('add_candidacy.html', form=form)
 
 @app.route('/modify_profile', methods=['GET', 'POST'])
@@ -114,10 +124,13 @@ def modify_candidacy():
     if form.validate_on_submit():
         
         if candidacy:
+            candidacy.job_type = form.job_type.data
+            candidacy.description = form.description.data
             candidacy.contact_full_name = form.contact_full_name.data
             candidacy.contact_email = form.contact_email.data
             candidacy.contact_mobilephone = form.contact_mobilephone.data
             candidacy.status = form.status.data
+            candidacy.comment = form.comment.data
             db.session.commit()
 
             flash(f"La candidature a bien été modifié",category="success")

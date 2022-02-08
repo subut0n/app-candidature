@@ -11,6 +11,14 @@
         <form method="POST" class="form-register">
             {{ form.hidden_tag() }}
 
+            {{ form.job_type.label() }}
+            {{ form.job_type(value=candidacy.job_type, class="form-control") }}
+            <br>
+
+            {{ form.description.label() }}
+            {{ form.description(value=candidacy.description, class="form-control") }}
+            <br>
+
             {{ form.contact_full_name.label() }}
             {{ form.contact_full_name(value=candidacy.contact_full_name, class="form-control") }}
             <br>
