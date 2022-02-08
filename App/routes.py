@@ -6,7 +6,8 @@ from .models import Users, Candidacy
 from .forms import Login, AddCandidacy, ModifyCandidacy, ModifyProfile
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
-from .utils import isAsciiNumber
+from App.utils import isAsciiNumber
+
 
 @app.route('/')
 @app.route('/home')
@@ -78,7 +79,7 @@ def add_candidature():
 
         if len(form.contact_mobilephone.data) <= 9:
             return False 
-        elif isAsciiNumber(form.contact_mobilephone) == False:
+        elif isAsciiNumber(form.contact_mobilephone.data) == False:
             return False
         else:
             return True
