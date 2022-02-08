@@ -78,7 +78,7 @@ def add_candidature():
 
         if len(form.contact_mobilephone.data) <= 9:
             return False 
-        if isAsciiNumber(form.contact_mobilephone.data) == False:
+        elif isAsciiNumber(form.contact_mobilephone.data) == False:
             return False
         else:
             return True
