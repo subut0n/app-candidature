@@ -45,7 +45,7 @@ def login_page():
 def board_page():
     """[Allow to generate the template of board.html on board path, if user is authenticated else return on login]
 
-    Returns:
+    Returns: 
         [str]: [board page code different if the user is admin or not]
     """
     admin_candidacy_attributs = ["user_fisrt_name",'company','job_type','date','status']
@@ -145,9 +145,10 @@ def modify_candidacy():
 @app.route('/delete_candidacy')
 def delete_candidacy():
     """[Allow to delete candidacy in the BDD with the id and redirect to board page]"""
-
+    
     candidacy_id = request.args.get('id')
-    Candidacy.query.filter_by(id=candidacy_id).first().delete_from_db()
+    
+    Candidacy.query.filter_by(id = candidacy_id).first().delete_from_db()
     flash("Candidature supprimé avec succés",category="success")
     return redirect(url_for('board_page'))
 
