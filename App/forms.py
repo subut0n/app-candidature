@@ -14,15 +14,18 @@ class Login(FlaskForm):
     submit = SubmitField(label="Se connecter")
 
 
-class AddCandidacy(FlaskForm):
+class AddCandidacy(FlaskForm): #add_candidacy.html to modify
     """[Form to add candidacy]
     """
     company = StringField(label='Entreprise', validators=[DataRequired()])
-    job_type = StringField(label='Type de poste', validators=[DataRequired()]) #add_candidacy.html a modifier
+    job_type = StringField(label='Type de poste', validators=[DataRequired()]) 
+    description = StringField(label='Description de l\'offre')
     contact_full_name = StringField(label='Nom et prénom de votre contact', validators=[DataRequired()])
     contact_email = EmailField(label='Email du contact', validators=[DataRequired()])
-    contact_mobilephone = StringField(IntegerField(label='Mobile du contact'))
-    status = SelectField('Status', choices=[('En cours', 'En Cours'), ('Annulé', 'Annulé'), ('Refusé', 'Refusé')])
+    contact_mobilephone = StringField(label='Mobile du contact')
+    status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Annulé', 'Annulé'), ('Refusé', 'Refusé')])
+    origin = StringField(label='Origine de l\'offre')
+    comment = StringField(label='Commentaires')
     submit = SubmitField(label='Ajouter une candidature')
 
 class ModifyProfile(FlaskForm):
@@ -36,9 +39,12 @@ class ModifyProfile(FlaskForm):
 class ModifyCandidacy(FlaskForm):
     """[form to modify candidacy]
     """
-    contact_full_name = StringField(label='contact_full_name', validators=[DataRequired()])
-    contact_email = StringField(label='contact_email', validators=[DataRequired()])
-    contact_mobilephone = StringField(label='contact_mobilephone')
+    job_type = StringField(label='Type de poste', validators=[DataRequired()])
+    description = StringField(label='Description de l\'offre')
+    contact_full_name = StringField(label='Contact', validators=[DataRequired()])
+    contact_email = StringField(label='Email du contact', validators=[DataRequired()])
+    contact_mobilephone = StringField(label='Mobile du contact')
     status = StringField(label='Status', validators=[DataRequired()])
-
-    submit = SubmitField(label="Valider")
+    origin = StringField(label='Origine de l\'offre')
+    comment = StringField(label='Commentaires')
+    submit = SubmitField(label="Valider les modifications")

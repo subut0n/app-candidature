@@ -1,4 +1,4 @@
 app.db
 __pycache__
 ./App/__pycache__
-.gitignore
+destest.py
