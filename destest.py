@@ -28,4 +28,4 @@ from App import db
 # print(comp[0]["company"])
 
 # print('REQUETE ADMIN', Candidacy.get_all_in_list_with_user_name())
-print(Candidacy.find_by_user_id(2))
+print(Users.query.)
