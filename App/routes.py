@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 from operator import methodcaller
-=======
 import imp
->>>>>>> d4f18e6c0b4489ffc8d3a64e049c0ade3aebc0d0
 from flask import render_template, redirect, url_for, flash, request
 from App import db, app
 from datetime import date
@@ -214,7 +211,6 @@ def board_page_admin():
         [str]: [board page code different if the user is admin or not]
     """
 
-<<<<<<< HEAD
     admin_candidacy_attributs = ["first_name",'company' ,'date','status']
     
     if (current_user.is_admin == True):  
@@ -268,10 +264,7 @@ def get_candidacy_date():
         return redirect(url_for('home_page'))         
 
 @app.route('/board/details', methods=["GET","POST"])
-=======
-@app.route('/board/details')
 @login_required
->>>>>>> d4f18e6c0b4489ffc8d3a64e049c0ade3aebc0d0
 def show_candidacy_details():
     candidacy_id = request.args.get('id')
     candidacy = Candidacy.query.filter_by(id=candidacy_id).first()
