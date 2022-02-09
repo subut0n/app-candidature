@@ -88,12 +88,61 @@ tr:hover {
   section{
     margin:50px;
   }
-  a, a:hover{
-    color: #fff;  
+
+.add-btn:active {
+  color: #CE0033;
+}
+
+  a:hover{
+    color: #fff; 
   }
 
   form {
-    width : 60%;
+    width : 100%;
     display: grid;
     justify-content: center;
   }
+
+ input {
+    width: 50%;
+  }
+  .add-btn {
+    width: 25%;
+    height: 100%;
+    margin: 20px;
+    padding: 0%;
+  }
+
+  .add-btn a {
+    width: 100%;
+  }
+
+  .add-btn button {
+    padding :0%;
+    margin: 0%;
+  }
+
+.detail-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.detail-main section {
+  border-color: #CE0033;
+  border-style: solid;
+  border-radius: 0%;
+}
+
+.Detail-main h2 p {
+  border-color: #CE0033;
+  border-width: 3px;
+}
+
+.detail-main h2 {
+  color: #fff;
+  background-color: #CE0033;
+}
+
+.detail-main p {
+  padding-left: 25px;
+}
