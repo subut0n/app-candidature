@@ -54,6 +54,11 @@ h1{
     font-family: 'Roboto', sans-serif;
     line-height: 30px;
   }
+
+tr:hover {
+  background-color: #ce00342f;
+}
+
   td{
     padding: 10px;
     text-align: left;
@@ -64,9 +69,8 @@ h1{
     border-bottom: solid 2px #CE0033;
   }
   
-  tr:hover  {
-    border-width: 3px;
-    border: #fff;
+  .modal:hover  {
+    background-color: #ce00349a;
   }
 
   #button{
@@ -86,4 +90,10 @@ h1{
   }
   a, a:hover{
     color: #fff;  
+  }
+
+  form {
+    width : 60%;
+    display: grid;
+    justify-content: center;
   }
