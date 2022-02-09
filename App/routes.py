@@ -13,6 +13,8 @@ import json
 import plotly
 import plotly.express as px
 
+
+
 @app.route('/')
 @app.route('/home')
 def home_page():
@@ -279,3 +281,6 @@ def show_stats():
     fig1json = json.dumps(fig1, cls = plotly.utils.PlotlyJSONEncoder)
     
     return render_template("statistiques.html", title = "Stats", fig1json = fig1json)
+
+
+
