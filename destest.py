@@ -12,19 +12,19 @@ from App import db
 mon_id = 23
 u = Candidacy.query.filter(Candidacy.status == "En cours").all()
 
-l = list(set([u[i].user_id for i in range(0,len(u))]))
-print(Users.query.filter_by(id=l[0]).first().last_name)
-print(l)
+# l = list(set([u[i].user_id for i in range(0,len(u))]))
+# print(Users.query.filter_by(id=l[0]).first().last_name)
+# print(l)
 
 
 
 
-test = Candidacy.query.group_by("company").all()
-#test2 = [comp.company for comp in test]
-print(test)
+# test = Candidacy.query.group_by("company").all()
+# #test2 = [comp.company for comp in test]
+# print(test)
 
-comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
-print(comp[0]["company"])
+# comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
+# print(comp[0]["company"])
 
 user_candidacy=Candidacy.get_all_in_list_with_user_name()
 #Candidacy(user_id = 23, company = "IBM", contact_full_name = "jean", contact_email="jean@gmail.com",date= "2022-01-01").save_to_db()

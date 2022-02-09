@@ -54,6 +54,11 @@ h1{
     font-family: 'Roboto', sans-serif;
     line-height: 30px;
   }
+
+tr:hover {
+  background-color: #ce00342f;
+}
+
   td{
     padding: 10px;
     text-align: left;
@@ -64,9 +69,8 @@ h1{
     border-bottom: solid 2px #CE0033;
   }
   
-  tr:hover  {
-    border-width: 3px;
-    border: #fff;
+  .modal:hover  {
+    background-color: #ce00349a;
   }
 
   #button{
@@ -84,6 +88,61 @@ h1{
   section{
     margin:50px;
   }
-  a, a:hover{
-    color: #fff;  
+
+.add-btn:active {
+  color: #CE0033;
+}
+
+  a:hover{
+    color: #fff; 
   }
+
+  form {
+    width : 100%;
+    display: grid;
+    justify-content: center;
+  }
+
+ input {
+    width: 50%;
+  }
+  .add-btn {
+    width: 25%;
+    height: 100%;
+    margin: 20px;
+    padding: 0%;
+  }
+
+  .add-btn a {
+    width: 100%;
+  }
+
+  .add-btn button {
+    padding :0%;
+    margin: 0%;
+  }
+
+.detail-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.detail-main section {
+  border-color: #CE0033;
+  border-style: solid;
+  border-radius: 0%;
+}
+
+.Detail-main h2 p {
+  border-color: #CE0033;
+  border-width: 3px;
+}
+
+.detail-main h2 {
+  color: #fff;
+  background-color: #CE0033;
+}
+
+.detail-main p {
+  padding-left: 25px;
+}
