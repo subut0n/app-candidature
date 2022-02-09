@@ -190,7 +190,14 @@ img {
 svg {
   overflow: hidden;
   vertical-align: middle;
+  color: #000000;
 }
+
+svg:hover {
+  /* background-color: #CE0033; */
+  color: #CE0033;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -7541,7 +7548,8 @@ button.bg-dark:hover {
 }
 .mt-4,
 .my-4 {
-  margin-top: 1.5rem !important;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .mr-4,
 .mx-4 {
