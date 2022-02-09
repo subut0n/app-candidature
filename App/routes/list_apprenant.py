@@ -14,7 +14,7 @@ def get_list_apprenant():
     """
     if current_user.is_admin == True:
         title = ["first_name", "last_name","email_address"]
-        return render_template("list_apprenant.html",title = title, list_apprenant = Users.query.filter_by(is_admin=False) )
+        return render_template("list_apprenant.html",head="Liste des apprenants",title = title, list_apprenant = Users.query.filter_by(is_admin=False) )
     else:
         flash('You are not an admin',category="danger")
         return redirect(url_for('home_page'))

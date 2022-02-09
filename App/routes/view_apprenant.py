@@ -12,7 +12,7 @@ def get_view_apprenant():
     """ Admin can display the profil of a student
     """
     apprenant = request.args.get('apprenant')
-    admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    admin_candidacy_attributs = ["first_names",'company' ,'date','status']
     apprenant_id = Users.query.filter_by(last_name=apprenant).first().id
     if current_user.is_admin == True:
         return render_template('board.html', lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=Candidacy.find_by_user_id(apprenant_id))
