@@ -101,7 +101,7 @@ class Candidacy(db.Model):
         for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.id, cls.company, cls.job_type, cls.date,cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
-
+ 
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
