@@ -9,14 +9,8 @@ from App import db
 #print(Candidacy.query.join(Users).with_entities(Candidacy.*, Users.first_name).first())
 
 #print(Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.entreprise, Candidacy.contact_full_name, Candidacy.contact_email, Candidacy.contact_mobilephone,Candidacy.date,Candidacy.status).all())
-<<<<<<< HEAD
 mon_id = 23
 u = Candidacy.query.filter(Candidacy.status == "En cours").all()
-=======
-
-# u = Candidacy.query.filter(Candidacy.status == "En cours").all()
-# print(u)
->>>>>>> d4f18e6c0b4489ffc8d3a64e049c0ade3aebc0d0
 
 l = list(set([u[i].user_id for i in range(0,len(u))]))
 print(Users.query.filter_by(id=l[0]).first().last_name)
@@ -32,11 +26,13 @@ print(test)
 comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
 print(comp[0]["company"])
 
-<<<<<<< HEAD
 user_candidacy=Candidacy.get_all_in_list_with_user_name()
-u = Candidacy.query.order_by("date").all()
-print(u[0]["date"])
-=======
-print('REQUETE ADMIN', Candidacy.get_all_in_list_with_user_name())
-print(Candidacy.find_by_user_id(1))
->>>>>>> d4f18e6c0b4489ffc8d3a64e049c0ade3aebc0d0
+#Candidacy(user_id = 23, company = "IBM", contact_full_name = "jean", contact_email="jean@gmail.com",date= "2022-01-01").save_to_db()
+
+u = Candidacy.query.order_by(Candidacy.date.asc()).all()
+
+
+user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name, Candidacy.company, Candidacy.contact_full_name,Candidacy.date,Candidacy.status).order_by(Candidacy.date.asc()).all()
+j = Candidacy.query.all()
+print("test : ")
+print(j)

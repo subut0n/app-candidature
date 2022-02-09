@@ -231,6 +231,8 @@ def redirect_to():
             return redirect(url_for("get_list_apprenant")) 
         elif page == "company":
             return redirect(url_for("get_company"))
+        elif page =="date":
+            return redirect(url_for("get_candidacy_date"))
         else:
             return render_template('home.html') 
 
@@ -242,7 +244,6 @@ def redirect_to():
 @login_required
 def get_company():
     if current_user.is_admin == True:
-        test = Candidacy.query.group_by("company").all()
         comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
         title = ["company"]
         return render_template("list_apprenant.html",lenght = len(title), title = title, list_apprenant=comp)
@@ -256,8 +257,11 @@ def get_company():
 def get_candidacy_date():
     if current_user.is_admin == True:
         #user_candidacy=Candidacy.get_all_in_list_with_user_name()
-        #u = user_candidacy.querry.oder_by("date")
-        return redirect(url_for('home_page')) 
+        user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name, Candidacy.company, Candidacy.contact_full_name,Candidacy.date,Candidacy.status).order_by(Candidacy.date.desc()).all()
+        #u = user_candidacy.query.order_by(Candidacy.date.asc()).all()
+        affichage = [{"first_name":c.first_name,"date":c.date,"company":c.company} for c in user_candidacy]
+        title = ["first_name","company","date"]
+        return render_template("list_apprenant.html",lenght=len(title),title=title,list_apprenant=affichage) 
         
     else:
         flash('You are not an admin',category="danger")
