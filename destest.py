@@ -26,6 +26,7 @@ u = Candidacy.query.filter(Candidacy.status == "En cours").all()
 # comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
 # print(comp[0]["company"])
 
+<<<<<<< HEAD
 user_candidacy=Candidacy.get_all_in_list_with_user_name()
 #Candidacy(user_id = 23, company = "IBM", contact_full_name = "jean", contact_email="jean@gmail.com",date= "2022-01-01").save_to_db()
 
@@ -56,3 +57,7 @@ test = Candidacy.query.all()
 list = [t.json() for t in test]
 print("test 3 :")
 print(list)
+=======
+# print('REQUETE ADMIN', Candidacy.get_all_in_list_with_user_name())
+print(Users.query.)
+>>>>>>> c5d85b0d84fe7dac56a398b9353f68f3a2f6f6a5
