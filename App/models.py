@@ -8,10 +8,8 @@ import csv
 @login_manager.user_loader
 def load_user(user_id):
     """Allow to create a current_user with his id
-
     Args:
         user_id (int): user_id from the database
-
     Returns:
         instance of users depending of his id
     """
@@ -19,11 +17,9 @@ def load_user(user_id):
 
 class Users(db.Model,UserMixin):
     """Create a table Users on the candidature database
-
     Args:
         db.Model: Generates columns for the table
         UserMixin: Generates an easy way to provide a current_user
-
     """
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
     last_name = db.Column(db.String(length=30), nullable=False)
@@ -62,10 +58,8 @@ class Users(db.Model,UserMixin):
 
 class Candidacy(db.Model):
     """Create a table Candidacy on the candidature database
-
     Args:
         db.Model: Generates columns for the table
-
     """
 
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
@@ -79,6 +73,7 @@ class Candidacy(db.Model):
     status = db.Column(db.String(), nullable=True)
     origin = db.Column(db.String(), nullable=True)
     description = db.Column(db.String(), nullable=True)
+    comment = db.Column(db.String(), nullable=True)
 
     def __repr__(self):
         return f' Candidat id : {self.user_id}'
@@ -95,21 +90,22 @@ class Candidacy(db.Model):
             'date': self.date,
             'status': self.status,
             'origin': self.origin,
-            'description': self.description
+            'description': self.description,
+            'comment' : self.comment
             }
 
 
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.company, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.id, cls.company, cls.job_type, cls.date,cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
-
+ 
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
-        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.company, cls.job_type, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status, cls.origin, cls.description).all():
+        for candidacy in cls.query.join(Users).with_entities(Users.first_name, cls.company, cls.job_type, cls.description, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status, cls.origin, cls.comment).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
