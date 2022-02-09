@@ -1,2 +1,0 @@
-import SQLAlchemy
-print(SQLAlchemy.__version__)
