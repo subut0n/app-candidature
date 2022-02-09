@@ -36,3 +36,23 @@ user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name, Can
 j = Candidacy.query.all()
 print("test : ")
 print(j)
+
+
+choice = "En cours"
+request = Candidacy.query.filter(Candidacy.status == choice).all()
+list_app_id = list(set([request[i].user_id for i in range(0,len(request))]))
+list_app = Users.query.filter(Users.id.in_(list_app_id)).all()
+list_app2 = [app.json() for app in list_app]
+print("test 2 :")
+#print(list_app2[0].company)
+
+
+test = Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.id,Candidacy.company).all()
+print("test 3 : ")
+print(type(test[0]))
+
+
+test = Candidacy.query.all()
+list = [t.json() for t in test]
+print("test 3 :")
+print(list)

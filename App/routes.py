@@ -164,7 +164,7 @@ def get_view_apprenant():
     """ Admin can display the profil of a student
     """
     apprenant = request.args.get('apprenant')
-    admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+    admin_candidacy_attributs = ["first_names",'company' ,'date','status']
     apprenant_id = Users.query.filter_by(last_name=apprenant).first().id
     if current_user.is_admin == True:
         return render_template('board.html', lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=Candidacy.find_by_user_id(apprenant_id))
@@ -179,7 +179,7 @@ def get_list_apprenant():
     """
     if current_user.is_admin == True:
         title = ["first_name", "last_name","email_address"]
-        return render_template("list_apprenant.html",title = title, list_apprenant = Users.query.filter_by(is_admin=False) )
+        return render_template("list_apprenant.html",head="Liste des apprenants",title = title, list_apprenant = Users.query.filter_by(is_admin=False) )
     else:
         flash('You are not an admin',category="danger")
         return redirect(url_for('home_page'))
@@ -193,11 +193,11 @@ def get_status_in_progress():
         choice = "En cours"
         request = Candidacy.query.filter(Candidacy.status == choice).all()
         list_app_id = list(set([request[i].user_id for i in range(0,len(request))]))
-        list_app = Users.query.filter(Users.id.in_(list_app_id))
-        admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+        list_app = Users.query.filter(Users.id.in_(list_app_id)).all()
+        admin_candidacy_attributs = ["first_name"]
         list_app2 = [app.json() for app in list_app]
 
-        return render_template("board.html", lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=list_app2)
+        return render_template("list_apprenant.html", head = f"Status : {choice}", title = admin_candidacy_attributs, list_apprenant=list_app2)
     else:
         flash('Vous n\'etes pas un administrateur !',category="danger")
         return redirect(url_for('home_page'))
@@ -247,7 +247,7 @@ def get_company():
     if current_user.is_admin == True:
         comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
         title = ["company"]
-        return render_template("list_apprenant.html",lenght = len(title), title = title, list_apprenant=comp)
+        return render_template("list_company.html",head = "Liste des entreprises", title = title, list_apprenant=comp)
 
     else:
         flash('You are not an admin',category="danger")
@@ -257,16 +257,29 @@ def get_company():
 @login_required
 def get_candidacy_date():
     if current_user.is_admin == True:
-        #user_candidacy=Candidacy.get_all_in_list_with_user_name()
-        user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name, Candidacy.company, Candidacy.contact_full_name,Candidacy.date,Candidacy.status).order_by(Candidacy.date.desc()).all()
-        #u = user_candidacy.query.order_by(Candidacy.date.asc()).all()
-        affichage = [{"first_name":c.first_name,"date":c.date,"company":c.company} for c in user_candidacy]
+        user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.id, Candidacy.company, Candidacy.contact_full_name,Candidacy.date,Candidacy.status).order_by(Candidacy.date.desc()).all()
+        affichage = [{"first_name":c.first_name,"date":c.date,"company":c.company,"id":c.id} for c in user_candidacy]
         title = ["first_name","company","date"]
-        return render_template("list_apprenant.html",lenght=len(title),title=title,list_apprenant=affichage) 
+        return render_template("list_date.html",head = "Candidatures par date",title=title,list_apprenant=affichage) 
         
     else:
         flash('You are not an admin',category="danger")
-        return redirect(url_for('home_page'))         
+        return redirect(url_for('home_page'))  
+
+@app.route('/candidacy_company')
+@login_required
+def get_candidacy_company():
+    if current_user.is_admin == True:
+        comp = request.args.get('company')
+        list = Candidacy.query.join(Users).with_entities(Users.last_name,Candidacy.id,Candidacy.company,Candidacy.status,Candidacy.date).filter(Candidacy.company == comp).all()
+        afficher = [{"last_name":l.last_name,"status":l.status,"date":l.date,"id":l.id} for l in list]
+        title = ["last_name","status","date"]
+        return render_template("list_date.html",head = f"Candidature pour l'entreprise : {comp}",title=title,list_apprenant=afficher)
+        
+
+    else:
+        flash('You are not an admin',category="danger")
+        return redirect(url_for('home_page'))        
 
 @app.route('/board/details', methods=["GET","POST"])
 @login_required
