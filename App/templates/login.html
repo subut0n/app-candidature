@@ -8,7 +8,7 @@
     <div class='container mt-5'>
         <h1> Log in </h1>
         <br>
-        <form method="POST" class="form-register">
+        <form method="POST" class="form-connect">
             {{ form.hidden_tag() }}
             
             {{ form.email.label() }}
@@ -17,7 +17,7 @@
             {{ form.password.label() }}
             {{ form.password(placeholder="***********", class="form-control") }}
             <br>
-            {{ form.submit(class="btn btn-lg btn-primary d-block", id="button")}}
+            {{ form.submit(class="btn btn-lg btn-primary d-block", id="button-connect")}}
             <br>
             <a class="forget-pswd" href=""> Mot de passe oublié ?</a>
         </form>
