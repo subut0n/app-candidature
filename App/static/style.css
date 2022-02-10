@@ -177,3 +177,6 @@ tr:hover {
   border-style: solid;
 }
 
+#button-connect {
+  width: 100%;
+}
