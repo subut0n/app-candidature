@@ -16,7 +16,7 @@ class AddCandidacy(FlaskForm): #add_candidacy.html to modifyh
     """[Form to add candidacy]
     """
     company = StringField(label='Entreprise', validators=[DataRequired()])
-    job_type = SelectField(label="Type d'emploi", choices=[('Data Scientist', 'Data Scientist'), ('Data Analyst', 'Data Analyst'), ('Data Engineer', 'Data Engineer'),('Developpeur Python','Developpeur Python'),('Data architect','Data architect')]) 
+    job_type = SelectField(label="Type d'emploi", choices=[('Data Scientist', 'Data Scientist'), ('Data Analyst', 'Data Analyst'), ('Data Engineer', 'Data Engineer'),('Developpeur Python','Developpeur Python'),('Data architect','Data architect'),('Autre','Autre')]) 
     description = StringField(label='Description de l\'offre')
     contact_full_name = StringField(label='Nom et prénom de votre contact', validators=[DataRequired()])
     contact_email = EmailField(label='Email du contact', validators=[DataRequired()])
