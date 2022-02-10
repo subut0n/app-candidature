@@ -13,7 +13,7 @@
         <br>
 
         {{ form.job_type.label }}
-        {{ form.job_type(size=32, class="form-control") }}
+        {{ form.job_type( class="form-control") }}
         <br>
 
         {{ form.description.label }}
@@ -32,20 +32,19 @@
         {{ form.contact_mobilephone(size=32, class="form-control") }}
         <br>  
 
+        {{ form.origin.label }}
+        {{ form.origin(class="form-control") }}
+        <br>  
+
         {{ form.comment.label }}
         {{ form.comment(size=32, class="form-control") }}
         <br>
-
+        
         {{ form.status.label }}
         {{ form.status(class="form-control") }}
         <br>
 
-        {{ form.origin.label }}
-        {{ form.origin(size=32, class="form-control") }}
-        <br>  
-
-
-        {{ form.submit(class="btn btn-lg btn-primary mt-4 d-block",id="button") }}
+        {{ form.submit(class="btn btn-lg btn-primary mt-4 d-block",id="button-add") }}
     </form>
 </div>
 {% endblock %}
