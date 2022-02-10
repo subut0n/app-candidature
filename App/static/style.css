@@ -59,6 +59,11 @@ tr:hover {
   background-color: #ce00342f;
 }
 
+h2 {
+  color:blue;
+  
+}
+
   td{
     padding: 10px;
     text-align: left;
@@ -106,6 +111,8 @@ tr:hover {
  input {
     width: 50%;
   }
+
+
   .add-btn {
     width: 25%;
     height: 100%;
