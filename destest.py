@@ -18,12 +18,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 # print(df)
 
-#test2 = [comp.company for comp in test]
- 
+#print(Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.entreprise, Candidacy.contact_full_name, Candidacy.contact_email, Candidacy.contact_mobilephone,Candidacy.date,Candidacy.status).all())
+mon_id = 23
+u = Candidacy.query.filter(Candidacy.status == "En cours").all()
 
+# l = list(set([u[i].user_id for i in range(0,len(u))]))
+# print(Users.query.filter_by(id=l[0]).first().last_name)
+# print(l)
 
-# comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
-# print(comp[0]["company"])
 
 # print('REQUETE ADMIN', Candidacy.get_all_in_list_with_user_name())
 # print(Candidacy.find_by_user_id(1))
@@ -47,21 +49,40 @@ def sample_metadata(database):
         
         results = db.session.query(*sel).all()
 
-        # Create a dictionary entry for each row of metadata information
-        sample_metadata = {}
-        for result in results:
-            sample_metadata["user_id"] = result[0]
-            sample_metadata["company"] = result[1]
-            sample_metadata["job_type"] = result[2]
-            sample_metadata["contact_full_name"] = result[3]
-            sample_metadata["contact_email"] = result[4]
-            sample_metadata["contact_mobilephone"] = result[5]
-            sample_metadata["date"] = result[6]
-            sample_metadata["status"] = result[7]
-            sample_metadata["origin"] = result[8]
-            sample_metadata["description"] = result[9]
-            sample_metadata["comment"] = result[10]
+# test = Candidacy.query.group_by("company").all()
+# #test2 = [comp.company for comp in test]
+# print(test)
 
-        print(sample_metadata)
-        return jsonify(sample_metadata)
-sample_metadata(db)
+# comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
+# print(comp[0]["company"])
+
+user_candidacy=Candidacy.get_all_in_list_with_user_name()
+#Candidacy(user_id = 23, company = "IBM", contact_full_name = "jean", contact_email="jean@gmail.com",date= "2022-01-01").save_to_db()
+
+u = Candidacy.query.order_by(Candidacy.date.asc()).all()
+
+
+user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name, Candidacy.company, Candidacy.contact_full_name,Candidacy.date,Candidacy.status).order_by(Candidacy.date.asc()).all()
+j = Candidacy.query.all()
+print("test : ")
+print(j)
+
+
+choice = "En cours"
+request = Candidacy.query.filter(Candidacy.status == choice).all()
+list_app_id = list(set([request[i].user_id for i in range(0,len(request))]))
+list_app = Users.query.filter(Users.id.in_(list_app_id)).all()
+list_app2 = [app.json() for app in list_app]
+print("test 2 :")
+#print(list_app2[0].company)
+
+
+test = Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.id,Candidacy.company).all()
+print("test 3 : ")
+print(type(test[0]))
+
+
+test = Candidacy.query.all()
+list = [t.json() for t in test]
+print("test 3 :")
+print(list)

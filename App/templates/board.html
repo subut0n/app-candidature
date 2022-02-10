@@ -72,9 +72,9 @@ Board
     </table>
   </div>
   {% if current_user.is_admin == False %}
-  <div>
+  <div class="add-btn">
       <button class="btn btn-lg btn-primary mt-4 d-block" id="button">
-        <a href="{{ url_for('add_candidature') }}">Ajouter candidature</a>
+        <a class="add-btn-link" href="{{ url_for('add_candidature') }}">Ajouter candidature</a>
       </button>
   </div>
   {% endif %}

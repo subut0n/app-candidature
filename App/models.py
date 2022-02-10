@@ -105,7 +105,7 @@ class Candidacy(db.Model):
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
-        for candidacy in cls.query.join(Users).with_entities(Users.first_name, cls.company, cls.job_type, cls.description, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status, cls.origin, cls.comment).all():
+        for candidacy in cls.query.join(Users).with_entities(Users.first_name, cls.id, cls.company, cls.job_type, cls.date, cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
@@ -123,7 +123,7 @@ def init_db():
     db.create_all()
     #db.session.add( )
     Users(last_name="ben", first_name= "charles", email_address= "cb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=True).save_to_db() 
-    Users(last_name="beniac", first_name= "cha", email_address= "bb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=False).save_to_db()
+    Users(last_name="beniac", first_name= "cha", email_address= "bb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=False).save_to_db()    
     Candidacy(user_id = 1, company = "facebook", contact_full_name = "mz", contact_email="mz@facebook.fb").save_to_db()
     Candidacy(user_id = 1, company = "google", contact_full_name = "lp", contact_email="lp@gmail.com").save_to_db()
 
