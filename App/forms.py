@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from numpy import integer
-from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField
+from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField, TextAreaField
 from wtforms_alchemy import PhoneNumberField
 from wtforms.validators import Length,DataRequired,Email,EqualTo,ValidationError
 from .models import Users
@@ -24,7 +24,7 @@ class AddCandidacy(FlaskForm): #add_candidacy.html to modify
     contact_mobilephone = StringField(label='Mobile du contact')
     status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Accepté', 'Accepté'), ('Refusé', 'Refusé')])
     origin = StringField(label='Origine de l\'offre')
-    comment = StringField(label='Commentaires')
+    comment = TextAreaField(label='Commentaires')
     submit = SubmitField(label='Ajouter une candidature')
 
 class ModifyProfile(FlaskForm):
