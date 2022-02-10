@@ -88,3 +88,8 @@ test = Candidacy.query.all()
 list = [t.json() for t in test]
 print("test 3 :")
 print(list)
+
+test = Candidacy.query.with_entities(Candidacy.company).distinct()
+test2 = [{"company" : c.company} for c in test]
+print("test 5 :")
+print(test2)

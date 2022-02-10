@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def get_company():
     if current_user.is_admin == True:
-        comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
+        comp = [{"company" : c.company} for c in Candidacy.query.with_entities(Candidacy.company).distinct()]
         title = ["company"]
         return render_template("list_company.html",head = "Liste des entreprises", title = title, list_apprenant=comp)
 
