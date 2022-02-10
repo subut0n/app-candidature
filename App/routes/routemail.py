@@ -14,7 +14,7 @@ mail = Mail(app)
 @app.route('/send')
 def send():
     msg = Message('sujet demon mail', sender=email,
-            recipients=['noherav445@alfaceti.com']) #email temporaire
+            recipients=['theotrc12@gmail.com']) #email temporaire
 
     msg.html = 'Changer votre mot de passe <button class="pwd_forget"> <a href = "https://www.youtube.com/watch?v=J5bIPtEbS0Q&t=114s"> click here </a> </button>'
     mail.send(msg)
