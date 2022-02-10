@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<h1>Détails de candidature</h1>
+<h1 class="details-title">Détails de candidature</h1>
 
-<main>
+<main class="detail-main">
 
     <section class="detail1">
         <h2>Entreprise</h2>
@@ -43,6 +43,11 @@
     <section class="detail7">
         <h2>Origine de l'offre</h2>
         <p>{{ candidacy['origin'] }}</p>
+    </section>
+
+    <section class="detail8">
+        <h2>Commentaires</h2>
+        <p>{{ candidacy['comment'] }}</p>
     </section>
 
 
