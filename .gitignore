@@ -2,3 +2,5 @@ app.db
 __pycache__
 ./App/__pycache__
 destest.py
+info_mail.py
+requirements.txt

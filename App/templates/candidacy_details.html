@@ -50,7 +50,11 @@
         <p>{{ candidacy['comment'] }}</p>
     </section>
 
-
+    <section id="modify-details">
+        <a id="button-modify-details" href="{{ url_for('modify_candidacy', id = candidacy['id']) }}">
+            Modifier les informations
+        </a>
+    </section>
 
 </main>
 

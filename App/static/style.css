@@ -80,12 +80,15 @@ h2 {
 
   #button{
     margin: 0 auto;
+    width: 15%;
   }
   /* demo styles */
   
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap');
   body{
     background-color: #f4f4f4;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 900;
   }
   label{
     color:rgb(0, 0, 0);
@@ -118,14 +121,11 @@ h2 {
     height: 100%;
     margin: 20px;
     padding: 0%;
-  }
-
-  .add-btn a {
     width: 100%;
   }
 
   .add-btn button {
-    padding :0%;
+    padding :2px;
     margin: 0%;
   }
 
@@ -138,11 +138,6 @@ h2 {
   border-color: #CE0033;
   border-style: solid;
   border-radius: 0%;
-}
-
-.Detail-main h2 p {
-  border-color: #CE0033;
-  border-width: 3px;
 }
 
 .detail-main h2 {
@@ -161,4 +156,34 @@ h2 {
 
 .forget-pswd:hover {
   text-decoration: underline;
+}
+
+#button-modify, #button-forget-pswd, #button-add {
+  font-size: medium;
+  width: 100%;
+}
+
+#modify-details{
+  display: flex;
+  justify-content: center;
+  grid-column: 1 /  span 2;
+  border-color: #f4f4f4;
+}
+
+#button-modify-details {
+  background-color: #CE0033;
+  width: 20%;
+  text-align: center;
+  border-style: solid;
+  padding: 3px;
+}
+
+#button-modify-details:hover {
+  background-color: #f4f4f4;
+  border-color: #CE0033;
+  border-style: solid;
+}
+
+#button-connect {
+  width: 100%;
 }
