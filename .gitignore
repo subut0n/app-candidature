@@ -2,4 +2,8 @@ app.db
 __pycache__
 ./App/__pycache__
 destest.py
+<<<<<<< HEAD
 notebook_test.ipynb
+=======
+info_mail.py
+>>>>>>> df8ed405a503582cdbc5a85da7e2756c2ee3a9a6

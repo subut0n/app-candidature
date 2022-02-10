@@ -8,7 +8,7 @@
     <div class='container mt-5'>
         <h1 class="text-center"> Modifier candidature </h1>
         <br>
-        <form method="POST" class="form-register">
+        <form method="POST" class="form-modify">
             {{ form.hidden_tag() }}
 
             {{ form.job_type.label() }}
@@ -31,7 +31,10 @@
             {{ form.status.label() }}
             {{ form.status(value=candidacy.status, class="form-control") }}
             <br>
-            {{ form.submit(class="btn btn-lg btn-primary d-block", id="button")}}
+            {{ form.comment.label() }}
+            {{ form.comment(value=candidacy.comment, class="form-control") }}
+            <br>
+            {{ form.submit(class="btn btn-lg btn-primary d-block", id="button-modify")}}
         </form>
     </div>  
 {% endblock %}
