@@ -75,6 +75,7 @@ tr:hover {
 
   #button{
     margin: 0 auto;
+    width: 15%;
   }
   /* demo styles */
   
@@ -111,14 +112,11 @@ tr:hover {
     height: 100%;
     margin: 20px;
     padding: 0%;
-  }
-
-  .add-btn a {
     width: 100%;
   }
 
   .add-btn button {
-    padding :0%;
+    padding :2px;
     margin: 0%;
   }
 
@@ -131,11 +129,6 @@ tr:hover {
   border-color: #CE0033;
   border-style: solid;
   border-radius: 0%;
-}
-
-.Detail-main h2 p {
-  border-color: #CE0033;
-  border-width: 3px;
 }
 
 .detail-main h2 {
@@ -155,3 +148,30 @@ tr:hover {
 .forget-pswd:hover {
   text-decoration: underline;
 }
+
+#button-modify, #button-forget-pswd, #button-add {
+  font-size: medium;
+  width: 100%;
+}
+
+#modify-details{
+  display: flex;
+  justify-content: center;
+  grid-column: 1 /  span 2;
+  border-color: #f4f4f4;
+}
+
+#button-modify-details {
+  background-color: #CE0033;
+  width: 20%;
+  text-align: center;
+  border-style: solid;
+  padding: 3px;
+}
+
+#button-modify-details:hover {
+  background-color: #f4f4f4;
+  border-color: #CE0033;
+  border-style: solid;
+}
+
