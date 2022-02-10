@@ -1,5 +1,4 @@
 from flask_wtf import FlaskForm
-
 from numpy import integer
 from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField
 from wtforms.validators import Length,DataRequired,Email,EqualTo,ValidationError
@@ -13,16 +12,16 @@ class Login(FlaskForm):
     submit = SubmitField(label="Se connecter")
 
 
-class AddCandidacy(FlaskForm): #add_candidacy.html to modify
+class AddCandidacy(FlaskForm): #add_candidacy.html to modifyh
     """[Form to add candidacy]
     """
     company = StringField(label='Entreprise', validators=[DataRequired()])
-    job_type = StringField(label='Type de poste', validators=[DataRequired()]) 
+    job_type = SelectField(label="Type d'emploi", choices=[('Data Scientist', 'Data Scientist'), ('Data Analyst', 'Data Analyst'), ('Data Engineer', 'Data Engineer'),('Developpeur Python','Developpeur Python'),('Data architect','Data architect')]) 
     description = StringField(label='Description de l\'offre')
     contact_full_name = StringField(label='Nom et prénom de votre contact', validators=[DataRequired()])
     contact_email = EmailField(label='Email du contact', validators=[DataRequired()])
     contact_mobilephone = StringField(label='Mobile du contact')
-    status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Annulé', 'Annulé'), ('Refusé', 'Refusé')])
+    status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Accepté', 'Accepté'), ('Refusé', 'Refusé')])
     origin = StringField(label='Origine de l\'offre')
     comment = StringField(label='Commentaires')
     submit = SubmitField(label='Ajouter une candidature')
