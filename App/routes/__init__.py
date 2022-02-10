@@ -1,1 +1,1 @@
-__all__ = ['board','board_admin','board-details','candidacy_date','candidature','company','delete_candidacy','home','list_apprenant','login', 'logout', 'modify_candidacy', 'modify_profile','redirect_to','statistics', 'status_in_progress','view_apprenant','candidacy_company']
+__all__ = ['board','board_admin','board-details','candidacy_date','candidature','company','delete_candidacy','home','list_apprenant','login', 'logout', 'modify_candidacy', 'modify_profile','redirect_to','statistics', 'status_in_progress','view_apprenant','candidacy_company', 'job_type', 'routemail']
