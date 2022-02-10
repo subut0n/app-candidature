@@ -79,9 +79,11 @@ tr:hover {
   }
   /* demo styles */
   
-  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;900&display=swap');
   body{
     background-color: #f4f4f4;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 900;
   }
   label{
     color:rgb(0, 0, 0);
