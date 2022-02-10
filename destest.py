@@ -26,6 +26,8 @@ u = Candidacy.query.filter(Candidacy.status == "En cours").all()
 # comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
 # print(comp[0]["company"])
 
+# print('REQUETE ADMIN', Candidacy.get_all_in_list_with_user_name())
+print(Users.query.all())
 user_candidacy=Candidacy.get_all_in_list_with_user_name()
 #Candidacy(user_id = 23, company = "IBM", contact_full_name = "jean", contact_email="jean@gmail.com",date= "2022-01-01").save_to_db()
 
