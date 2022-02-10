@@ -1,5 +1,4 @@
 from flask_wtf import FlaskForm
-
 from numpy import integer
 from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField
 from wtforms_alchemy import PhoneNumberField

@@ -15,7 +15,7 @@ def board_page_admin():
         [str]: [board page code different if the user is admin or not]
     """
 
-    admin_candidacy_attributs = ["first_name",'company' ,'date','status']
+    admin_candidacy_attributs = ["first_name",'company' ,'job_type', 'date','status']
     
     if (current_user.is_admin == True):  
         return render_template('board_admin.html', lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=Candidacy.get_all_in_list_with_user_name())

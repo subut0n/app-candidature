@@ -6,15 +6,14 @@ from ..forms import Login, AddCandidacy, ModifyCandidacy, ModifyProfile
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
-
-@app.route('/list_apprenant')
+@app.route('/job_type')
 @login_required
-def get_list_apprenant():
-    """ Admin can display th list of all student
-    """
+def get_job_type():
     if current_user.is_admin == True:
-        title = ["first_name", "last_name","email_address"]
-        return render_template("list_apprenant.html",head="Liste des apprenants",title = title, list_apprenant = Users.query.filter_by(is_admin=False) )
+        comp = [{"job_type" : c.job_type} for c in Candidacy.query.group_by("job_type").all()]
+        title = ["job_type"]
+        return render_template("list_company.html",head = "Liste des jobs", title = title, list_apprenant=comp)
+
     else:
         flash('You are not an admin',category="danger")
-        return redirect(url_for('home_page'))
+        return redirect(url_for('home_page')) 

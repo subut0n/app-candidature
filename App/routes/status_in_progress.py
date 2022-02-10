@@ -15,11 +15,11 @@ def get_status_in_progress():
         choice = "En cours"
         request = Candidacy.query.filter(Candidacy.status == choice).all()
         list_app_id = list(set([request[i].user_id for i in range(0,len(request))]))
-        list_app = Users.query.filter(Users.id.in_(list_app_id))
-        admin_candidacy_attributs = ["first_names",'entreprise','contact_full_name','contact_email', 'contact_mobilephone' ,'date','status']
+        list_app = Users.query.filter(Users.id.in_(list_app_id)).all()
+        admin_candidacy_attributs = ["first_name"]
         list_app2 = [app.json() for app in list_app]
 
-        return render_template("board.html", lenght = len(admin_candidacy_attributs), title = admin_candidacy_attributs, user_candidacy=list_app2)
+        return render_template("list_apprenant.html", head = f"Status : {choice}", title = admin_candidacy_attributs, list_apprenant=list_app2)
     else:
         flash('Vous n\'etes pas un administrateur !',category="danger")
         return redirect(url_for('home_page'))

@@ -10,11 +10,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def get_company():
     if current_user.is_admin == True:
-        test = Candidacy.query.group_by("company").all()
         comp = [{"company" : c.company} for c in Candidacy.query.group_by("company").all()]
         title = ["company"]
-        return render_template("list_apprenant.html",lenght = len(title), title = title, list_apprenant=comp)
+        return render_template("list_company.html",head = "Liste des entreprises", title = title, list_apprenant=comp)
 
     else:
         flash('You are not an admin',category="danger")
-        return redirect(url_for('home_page'))
+        return redirect(url_for('home_page')) 

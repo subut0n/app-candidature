@@ -18,6 +18,10 @@ def redirect_to():
             return redirect(url_for("get_list_apprenant")) 
         elif page == "company":
             return redirect(url_for("get_company"))
+        elif page == "job_type":
+            return redirect(url_for("get_job_type"))
+        elif page =="date":
+            return redirect(url_for("get_candidacy_date"))
         else:
             return render_template('home.html') 
 
