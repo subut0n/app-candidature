@@ -10,10 +10,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def get_candidacy_date():
     if current_user.is_admin == True:
-        #user_candidacy=Candidacy.get_all_in_list_with_user_name()
-        #u = user_candidacy.querry.oder_by("date")
-        return redirect(url_for('home_page')) 
+        user_candidacy = Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.id, Candidacy.company, Candidacy.contact_full_name,Candidacy.date,Candidacy.status).order_by(Candidacy.date.desc()).all()
+        affichage = [{"first_name":c.first_name,"date":c.date,"company":c.company,"id":c.id} for c in user_candidacy]
+        title = ["first_name","company","date"]
+        return render_template("list_date.html",head = "Candidatures par date",title=title,list_apprenant=affichage) 
         
     else:
         flash('You are not an admin',category="danger")
-        return redirect(url_for('home_page'))
+        return redirect(url_for('home_page'))  

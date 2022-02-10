@@ -146,3 +146,12 @@ tr:hover {
 .detail-main p {
   padding-left: 25px;
 }
+
+.forget-pswd {
+  color: #CE0033;
+  text-align: center;
+}
+
+.forget-pswd:hover {
+  text-decoration: underline;
+}
