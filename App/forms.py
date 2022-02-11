@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
 from numpy import integer
-from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField
+from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField, TextAreaField
+from wtforms_alchemy import PhoneNumberField
 from wtforms.validators import Length,DataRequired,Email,EqualTo,ValidationError
 from .models import Users
+from .utils import list_mail
 
 class Login(FlaskForm):
     """[Form to login]
@@ -23,7 +25,7 @@ class AddCandidacy(FlaskForm): #add_candidacy.html to modifyh
     contact_mobilephone = StringField(label='Mobile du contact')
     status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Accepté', 'Accepté'), ('Refusé', 'Refusé')])
     origin = SelectField(label='Origine de l\'offre', choices=[('LinkedIn','LinkedIn'), ('Indeed', 'Indeed'), ('Pole Emploi', 'Pole Emploi'),('Par un proche','Par un proche'),('Autre','Autre')])
-    comment = StringField(label='Commentaires')
+    comment = TextAreaField(label='Commentaires')
     submit = SubmitField(label='Ajouter une candidature')
 
 class ModifyProfile(FlaskForm):
@@ -46,3 +48,17 @@ class ModifyCandidacy(FlaskForm):
     origin = StringField(label='Origine de l\'offre')
     comment = StringField(label='Commentaires')
     submit = SubmitField(label="Valider les modifications")
+
+class Forgotten_pwd(FlaskForm):
+    """[Form to forgotten password]
+    """
+    email = EmailField(label="Adresse mail:", validators = [DataRequired()])
+    submit = SubmitField(label="Send mail")
+
+class Modify_pwd(FlaskForm):
+    """[Form to modify password]
+    """
+    # email = EmailField(label="Adresse mail:", validators = [DataRequired()])
+    # current_password = PasswordField(label="Mot de passe actuel:", validators = [DataRequired()])
+    new_password = PasswordField(label="Nouveau mot de passe:", validators = [DataRequired()])
+    submit = SubmitField(label="Valider")

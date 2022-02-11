@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def get_candidacy_company():
     if current_user.is_admin == True:
-        comp = request.args.get('company')
+        comp = request.args.get('job')
         list = Candidacy.query.join(Users).with_entities(Users.last_name,Candidacy.id,Candidacy.company,Candidacy.status,Candidacy.date).filter(Candidacy.company == comp).all()
         afficher = [{"last_name":l.last_name,"status":l.status,"date":l.date,"id":l.id} for l in list]
         title = ["last_name","status","date"]
