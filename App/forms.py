@@ -3,7 +3,6 @@ from numpy import integer
 from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField
 from wtforms.validators import Length,DataRequired,Email,EqualTo,ValidationError
 from .models import Users
-from .utils import list_mail
 
 class Login(FlaskForm):
     """[Form to login]

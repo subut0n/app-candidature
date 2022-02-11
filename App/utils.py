@@ -8,6 +8,4 @@ def isAsciiNumber(mystr):
     return True
 
 
-list_mail = [ c.email_address
-          
-               for c in Users.query]
+list_mail = [ c.email_address for c in Users.query]
