@@ -145,3 +145,5 @@ def init_db():
         Users(**user).save_to_db()
     
     lg.warning('Database initialized!')
+
+
