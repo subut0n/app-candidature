@@ -13,6 +13,6 @@ def delete_candidacy():
     
     candidacy_id = request.args.get('id')
     
-    Candidacy.query.filter_by(id = candidacy_id).first().delete_from_db()
+    Candidacy.query.filter_by(id=candidacy_id).first().delete_from_db()
     flash("Candidature supprimé avec succés",category="success")
     return redirect(url_for('board_page'))

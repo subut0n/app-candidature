@@ -42,8 +42,8 @@ class ModifyCandidacy(FlaskForm):
     contact_full_name = StringField(label='Contact', validators=[DataRequired()])
     contact_email = StringField(label='Email du contact', validators=[DataRequired()])
     contact_mobilephone = StringField(label='Mobile du contact')
-    status = StringField(label='Status', validators=[DataRequired()])
-    origin = StringField(label='Origine de l\'offre')
+    status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Accepté', 'Accepté'), ('Refusé', 'Refusé')])
+    origin = SelectField(label='Origine de l\'offre', choices=[('LinkedIn','LinkedIn'), ('Indeed', 'Indeed'), ('Pole Emploi', 'Pole Emploi'),('Par un proche','Par un proche'),('Autre','Autre')])
     comment = StringField(label='Commentaires')
     submit = SubmitField(label="Valider les modifications")
 

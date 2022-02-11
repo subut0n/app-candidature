@@ -55,21 +55,19 @@ def show_stats():
                 "comment":c.comment 
                 } for c in user_candidacy]   
 
-    df1 = pd.DataFrame(affichage)
-    fig1 = px.histogram(df1, x='status', title = "Stats")
+    df = pd.DataFrame(affichage)
+    fig1 = px.histogram(df, x='status', title = "Stats")
     fig1json = json.dumps(fig1, cls = plotly.utils.PlotlyJSONEncoder)
     
     # Graph two
     
-    count = df1.groupby(["job_type"]).count()
-    count["first_name"]
-    fig2 = px.pie(count, values='first_name',  title="Répartition des métiers")
+    count = df.groupby(["job_type", "first_name"]).count()
+    fig2 = px.pie(count.reset_index(), values='id',names="job_type", title="Répartition des métiers")
     fig2json = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
 
     
-    count = df1.groupby(["origin"]).count()
-    count["first_name"]
-    fig3 = px.pie(count, values='first_name',  title="Répartition des plateformes")
+    count = df.groupby(["origin"]).count()
+    fig3 = px.pie(count.reset_index(), values='first_name', names='origin', title="Répartition des plateformes")
     fig3json = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
     
     # Graph three
