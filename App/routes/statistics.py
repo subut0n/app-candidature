@@ -61,16 +61,21 @@ def show_stats():
     
     # Graph two
     
-    count = df1.groupby(["status"]).count()
-    count["id"]
-    fig2 = px.pie(count, values='id',  title="stats")
+    count = df1.groupby(["job_type"]).count()
+    count["first_name"]
+    fig2 = px.pie(count, values='first_name',  title="Répartition des métiers")
     fig2json = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
 
+    
+    count = df1.groupby(["origin"]).count()
+    count["first_name"]
+    fig3 = px.pie(count, values='first_name',  title="Répartition des plateformes")
+    fig3json = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
+    
     # Graph three
     # df = px.data.gapminder().query("continent=='Oceania'")
     # fig3 = px.line(df, x="year", y="lifeExp", color='country',  title="Life Expectancy")
     # graph3JSON = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
 
 
-    return render_template("statistiques.html",  fig1json=fig1json , fig2json=fig2json ) #,  graph2JSON=graph2JSON, graph3JSON=graph3JSON)
-
+    return render_template("statistiques.html",  fig1json=fig1json , fig2json=fig2json, fig3json=fig3json ) #,  graph2JSON=graph2JSON, graph3JSON=graph3JSON)
