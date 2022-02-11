@@ -19,7 +19,7 @@
             <br>
             {{ form.submit(class="btn btn-lg btn-primary d-block", id="button-connect")}}
             <br>
-            <a class="forget-pswd" href=""> Mot de passe oublié ?</a>
+            <a class="forget-pswd" href="{{ url_for('new_password') }}"> Mot de passe oublié ?</a>
         </form>
     </div>  
 {% endblock %}
