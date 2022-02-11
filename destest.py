@@ -89,7 +89,7 @@ list = [t.json() for t in test]
 print("test 3 :")
 print(list)
 
-test = Candidacy.query.with_entities(Candidacy.company).distinct()
-test2 = [{"company" : c.company} for c in test]
+#comp = [{"company" : c.company} for c in Candidacy.query.group_by(Candidacy.company).first()]
+comp = Candidacy.query.group_by(Candidacy.company).with_entities(Candidacy.company)
 print("test 5 :")
-print(test2)
+print(comp[1].company)

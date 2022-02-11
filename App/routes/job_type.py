@@ -10,9 +10,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def get_job_type():
     if current_user.is_admin == True:
-        comp = [{"job_type" : c.job_type} for c in Candidacy.query.with_entities(Candidacy.job_type).distinct()]
+        #comp = [{"job_type" : c.job_type} for c in Candidacy.query.with_entities(Candidacy.job_type).distinct()]
+        comp = [{"job_type" : c.job_type} for c in Candidacy.query.group_by(Candidacy.job_type).with_entities(Candidacy.job_type)]
         title = ["job_type"]
-        return render_template("list_company.html",head = "Liste des jobs", title = title, list_apprenant=comp)
+        return render_template("list_job_type.html",head = "Liste des jobs", title = title, list_apprenant=comp)
 
     else:
         flash('You are not an admin',category="danger")
