@@ -17,8 +17,8 @@ mail = Mail(app)
 def send(email):
     msg = Message('sujet demon mail', sender= EMAIL_ADDRESS,
             recipients=[email])
-    varlink = 'http://127.0.0.1:5000/modify_password/' + email
+    varlink = 'http://simploncandidature.herokuapp.com/modify_password/' + email
     
-    msg.body = "Changer votre mot de passe \n http://127.0.0.1:5000/modify_password/" + email
+    msg.body = "Changer votre mot de passe \n http://simploncandidature.herokuapp.com/modify_password/" + email
     mail.send(msg)
     return "message envoyé"
