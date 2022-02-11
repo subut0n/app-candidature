@@ -4,6 +4,7 @@ from App import db, app
 import pandas as pd
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
+
 #print(Candidacy.query.join(Users).with_entities(Candidacy.*, Users.first_name).first())
 
 #print(Candidacy.query.join(Users).with_entities(Users.first_name,Candidacy.entreprise, Candidacy.contact_full_name, Candidacy.contact_email, Candidacy.contact_mobilephone,Candidacy.date,Candidacy.status).all())
