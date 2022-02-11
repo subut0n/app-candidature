@@ -28,7 +28,7 @@ def add_candidature():
 
 
     if form.validate_on_submit() and conditions_ok(form):
-        Candidacy(user_id = current_user.id, company = form.company.data, job_type = form.job_type.data, description = form.description.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data, status = form.status.data, comment = form.comment.data).save_to_db()
+        Candidacy(user_id = current_user.id, company = form.company.data, job_type = form.job_type.data, description = form.description.data, contact_full_name = form.contact_full_name.data, contact_email = form.contact_email.data, contact_mobilephone = form.contact_mobilephone.data, status = form.status.data, comment = form.comment.data, origin = form.origin.data).save_to_db()
         flash('Nouvelle candidature ajouté ', category='success')
         return redirect(url_for('board_page'))
     return render_template('add_candidacy.html', form=form)

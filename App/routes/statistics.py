@@ -55,22 +55,25 @@ def show_stats():
                 "comment":c.comment 
                 } for c in user_candidacy]   
 
-    df1 = pd.DataFrame(affichage)
-    fig1 = px.histogram(df1, x='status', title = "Stats")
+    df = pd.DataFrame(affichage)
+    fig1 = px.histogram(df, x='status', title = "Stats")
     fig1json = json.dumps(fig1, cls = plotly.utils.PlotlyJSONEncoder)
     
     # Graph two
     
-    count = df1.groupby(["status"]).count()
-    count["id"]
-    fig2 = px.pie(count, values='id',  title="stats")
+    count = df.groupby(["job_type", "first_name"]).count()
+    fig2 = px.pie(count.reset_index(), values='id',names="job_type", title="Répartition des métiers")
     fig2json = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
 
+    
+    count = df.groupby(["origin"]).count()
+    fig3 = px.pie(count.reset_index(), values='first_name', names='origin', title="Répartition des plateformes")
+    fig3json = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
+    
     # Graph three
     # df = px.data.gapminder().query("continent=='Oceania'")
     # fig3 = px.line(df, x="year", y="lifeExp", color='country',  title="Life Expectancy")
     # graph3JSON = json.dumps(fig3, cls=plotly.utils.PlotlyJSONEncoder)
 
 
-    return render_template("statistiques.html",  fig1json=fig1json , fig2json=fig2json ) #,  graph2JSON=graph2JSON, graph3JSON=graph3JSON)
-
+    return render_template("statistiques.html",  fig1json=fig1json , fig2json=fig2json, fig3json=fig3json ) #,  graph2JSON=graph2JSON, graph3JSON=graph3JSON)

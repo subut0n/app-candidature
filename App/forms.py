@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from numpy import integer
-from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField
+from wtforms import PasswordField,EmailField,SubmitField,StringField, IntegerField, FieldList, SelectField, TextAreaField
 from wtforms.validators import Length,DataRequired,Email,EqualTo,ValidationError
 from .models import Users
 
@@ -23,7 +23,7 @@ class AddCandidacy(FlaskForm): #add_candidacy.html to modifyh
     contact_mobilephone = StringField(label='Mobile du contact')
     status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Accepté', 'Accepté'), ('Refusé', 'Refusé')])
     origin = SelectField(label='Origine de l\'offre', choices=[('LinkedIn','LinkedIn'), ('Indeed', 'Indeed'), ('Pole Emploi', 'Pole Emploi'),('Par un proche','Par un proche'),('Autre','Autre')])
-    comment = StringField(label='Commentaires')
+    comment = TextAreaField(label='Commentaires')
     submit = SubmitField(label='Ajouter une candidature')
 
 class ModifyProfile(FlaskForm):
@@ -42,8 +42,8 @@ class ModifyCandidacy(FlaskForm):
     contact_full_name = StringField(label='Contact', validators=[DataRequired()])
     contact_email = StringField(label='Email du contact', validators=[DataRequired()])
     contact_mobilephone = StringField(label='Mobile du contact')
-    status = StringField(label='Status', validators=[DataRequired()])
-    origin = StringField(label='Origine de l\'offre')
+    status = SelectField(label='Statut de la candidature', choices=[('En cours', 'En Cours'), ('Accepté', 'Accepté'), ('Refusé', 'Refusé')])
+    origin = SelectField(label='Origine de l\'offre', choices=[('LinkedIn','LinkedIn'), ('Indeed', 'Indeed'), ('Pole Emploi', 'Pole Emploi'),('Par un proche','Par un proche'),('Autre','Autre')])
     comment = StringField(label='Commentaires')
     submit = SubmitField(label="Valider les modifications")
 

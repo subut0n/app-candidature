@@ -187,3 +187,21 @@ h2 {
 #button-connect {
   width: 100%;
 }
+
+#div-stat {
+  display: flex;
+  justify-content: center;
+}
+
+#button-stat svg {
+  margin-top: 20px;
+  fill: #fff;
+  background-color: #CE0033;
+  border-radius: 5px;
+}
+
+#button-stat svg:hover {
+  fill: #CE0033;
+  background-color: #fff;
+  border-style: solid;
+}
