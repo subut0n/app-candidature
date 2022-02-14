@@ -28,7 +28,7 @@ def get_candidacy_job():
         list = Candidacy.query.join(Users).with_entities(Users.last_name,Candidacy.id,Candidacy.company,Candidacy.status,Candidacy.date).filter(Candidacy.job_type == job).all()
         afficher = [{"last_name":l.last_name,"status":l.status,"date":l.date,"id":l.id} for l in list]
         title = ["last_name","status","date"]
-        return render_template("list_apprenant.html",head = f"Candidature pour le métier : {job}",title=title,list_apprenant=afficher)
+        return render_template("list_date.html",head = f"Candidature pour le métier : {job}",title=title,list_apprenant=afficher)
         
     else:
         flash('You are not an admin',category="danger")
