@@ -7807,9 +7807,10 @@ button.bg-dark:hover {
   margin-bottom: auto !important;
 }
 .ml-auto,
-.mx-auto {
+/* .mx-auto {
   margin-left: auto !important;
-}
+} */
+
 @media (min-width: 576px) {
   .m-sm-0 {
     margin: 0 !important;

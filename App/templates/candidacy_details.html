@@ -39,16 +39,17 @@
         <h2>Nom Contact</h2>
         <p>{{ candidacy['contact_full_name'] }}</p>
     </section>
+    
+    <section class="detail8">
+        <h2>Commentaires</h2>
+        <p>{{ candidacy['comment'] }}</p>
+    </section>
 
     <section class="detail7">
         <h2>Origine de l'offre</h2>
         <p>{{ candidacy['origin'] }}</p>
     </section>
 
-    <section class="detail8">
-        <h2>Commentaires</h2>
-        <p>{{ candidacy['comment'] }}</p>
-    </section>
 
     <section id="modify-details">
         <a id="button-modify-details" href="{{ url_for('modify_candidacy', id = candidacy['id']) }}">
