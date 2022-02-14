@@ -28,6 +28,7 @@ def modify_candidacy():
             candidacy.contact_mobilephone = form.contact_mobilephone.data
             candidacy.status = form.status.data
             candidacy.comment = form.comment.data
+            candidacy.origin = form.origin.data
             db.session.commit()
 
             flash(f"La candidature a bien été modifié",category="success")
