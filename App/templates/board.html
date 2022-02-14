@@ -48,7 +48,8 @@ Board
               </svg>
             </a>
             
-             <a data-toggle="modal" data-target="#Modal-delete-{{candidacy}}" style='cursor:pointer'>
+            <a href="{{ url_for('delete_candidacy', id=candidacy['id']) }}">
+
               
               <svg style="width:24px;height:24px"  viewBox="0 0 24 24">
                 <path fill="currentColor"
