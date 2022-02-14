@@ -37,7 +37,7 @@ class ModifyProfile(FlaskForm):
 class ModifyCandidacy(FlaskForm):
     """[form to modify candidacy]
     """
-    job_type = StringField(label='Type de poste', validators=[DataRequired()])
+    job_type = SelectField(label="Type d'emploi", choices=[('Data Scientist', 'Data Scientist'), ('Data Analyst', 'Data Analyst'), ('Data Engineer', 'Data Engineer'),('Developpeur Python','Developpeur Python'),('Data architect','Data architect'),('Autre','Autre')]) 
     description = StringField(label='Description de l\'offre')
     contact_full_name = StringField(label='Contact', validators=[DataRequired()])
     contact_email = StringField(label='Email du contact', validators=[DataRequired()])
