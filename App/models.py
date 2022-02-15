@@ -1,5 +1,6 @@
+from flask import redirect
 from App import db,login_manager
-import datetime 
+from datetime import datetime, timedelta
 from flask_login import UserMixin # allow to set variable is_active=True and to stay connected
 import logging as lg
 from werkzeug.security import generate_password_hash
@@ -116,6 +117,14 @@ class Candidacy(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+
+def sender_remind(candidacy):
+    date_seven = candidacy.date + timedelta(days = 7)
+    today = datetime.date.today()
+    if date_seven == today:
+        # send_mail_for_remind()
+        return redirect(url_for("send_remind"))
 
 # Function to create db and populate it
 def init_db():
