@@ -1,10 +1,10 @@
-# candi-app
-Interface pour candidature
-
-
+# Application de gestion de candidature
+Interface pour candidature simplon. 
+Disponible sur http://simploncandidature.herokuapp.com/
 
 # Deployment:
+Realiser avec Heroku
+Base de donnees PostgreSQL
 
-La version en production utilise Postgre SQL.
-Attention la dernière version de SQLAlchemy n'est pas compatible avec Heroku, il faut utiliser la version dans les requirements.
-Après avoir push sur Heroku, il faut accèder à la console du serveur et initialiser la db: python create.py
+# Organisation
+https://trello.com/b/MsQEHxiD/tableau-des-taches 
